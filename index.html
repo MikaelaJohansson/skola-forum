@@ -3,40 +3,50 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Välkommen</title>
+    <title>FORUM</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
   </head>
 
   <body>
-
+    <h1>Välkommen</h1>
+    <br>
+    <p>Hej  vad kul att du tittar in igen</p>
+    <br>
     <div class="container">
-      <h1>Välkommen</h1>
-      <p>Hej * vad kul att du tittar in igen</p>
-
-      <form action="/posts" method="post">
+      
+      <form action="/posts" method="post" id="form">
 
         <label for="namn">Namn</label>
-        <input type="text" id="namn" name="namn">
-
+        <input type="text" id="namn" name="namn" size="30" >
+        <br>
         <label for="email">Email</label>
-        <input type="text" id="email" name="email">
-
+        <input type="text" id="email" name="email" size="30" >
+        <br>
         <label for="amne">Ämne</label>
-        <input type="text" id="amne" name="amne">
+        <input type="text" id="amne" name="amne" size="30" >
         <br>
         <br>
-        <label for="posts">Skriv ditt inlägg här</label>
+        <label for="posts">Inlägg:</label>
         <br>
         <textarea name="posts" id="posts" cols="30" rows="10"></textarea>
         <br>
-        <button type="submit">skicka in</button>
+        <button type="submit">post</button>
       </form>
+      <br>
 
-      <section>
-        
+      <div class="input">
+        <table>
+          <tr>
+            ***NODE***
+          </tr>
+          ***NODE***
+        </table>
+      </div>
 
-        </form>
-      </section>
     </div>
-
+  
   </body>
 </html>

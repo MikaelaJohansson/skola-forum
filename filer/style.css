@@ -1,0 +1,67 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100&family=Special+Elite&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Major Mono Display', monospace;
+}
+body{
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  display: flex;
+  background-color: rgb(59, 90, 83);
+  flex-direction: column;
+  overflow-x: hidden;
+  
+}
+h1,p{
+  color: white;
+  white-space: nowrap;
+  font-size: 2rem;
+}
+h1{
+  font-size: 3rem;
+}
+
+
+.container{
+  background-color: whitesmoke;
+  flex-direction: column;
+  min-height: fit-content;
+  display: flex;
+  justify-content: center;
+  padding-left: 50%;
+  padding-right:50% ;
+ 
+  padding-top: 2%;  
+}
+
+#form{
+ 
+  padding: 4%;
+  padding-left: 40%;
+  padding-right: 125%;
+  background-color: rgb(226, 243, 226);
+  color: green;
+  min-height: fit-content;
+  border: 15px solid rgb(120, 171, 120);
+  border-radius: 1rem;
+  box-shadow: 1px 2px rgb(120, 171, 120);
+}
+
+.input{
+  background-color:rgb(226, 243, 226);
+  padding: 4%;
+  padding-left: 40%;
+  padding-right: 125%;
+  min-height: fit-content;
+  box-shadow: 10px 10px 10px  rgb(120, 171, 120);
+  margin-bottom: 10%;
+  border-radius: 1rem;
+}
+
+

@@ -3,35 +3,8 @@ let app = express();
 let port = 4020;
 let mysql = require("mysql");
 let fs = require("fs");
-const { constrainedMemory } = require("process");
-
-// konektar databas till server
-let datorbas = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database:"inloggning",
-});
-datorbas.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-
-  datorbas.query("SELECT * FROM users",function(err,result,fields){
-    if(err)throw err;
-    console.log()
-  
-  })
-});
-
-// startar servern på porten
-let server = app.listen(port, function(){
-  console.log(`Allt är lugnt, port körs på ${port}`);
-})
-
-// hämtar inloggningsidan
-app.get("/", function(req,res){
-  res.sendFile(__dirname + "/loggin.html")
-})
+let cookieParser = require('cookie-parser')
+let session = require('express-session')
 
 // kopplar iphopp med statics mappen
 app.use(express.static("filer"));
@@ -39,30 +12,67 @@ app.use(express.static("filer"));
 // för att kunna läsa post data
 app.use(express.urlencoded({extended:true}));
 
+// databas uppe till server
+let datorbas = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database:"inloggning",
+});
 
+datorbas.connect(function(err) {
+  if (err) throw err;
+  console.log("Du är ansluten till datorbas!");
+});
 
-// inloggning till huvud sida INLOGGNINGSIDAN start
-app.post("/form", function(req,res){
-  
-
-})
-
-// INDEX.HTML huvud sidan där allt ska hamna
 app.get("/index", function(req,res){
-  res.sendFile(__dirname + "/index.html")
+  res.sendFile(__dirname + "/index.html");
 })
 
 
 
-// skickar över data till datorbasen från input
-app.post("/posts", function(req,res){
+app.get("table", function (req,res){
 
-  let datorbas = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database:"inloggning",
-  });
+  datorbas.query("select * from posts", function (err, result){
+    if (err) throw err;
+    
+    fs.readFile("index.html", "utf-8", function (err, data){
+      if (err) throw err;
+
+      let htmlArray = data.split("***NODE***");
+      let output = htmlArray[0];
+
+      for (let key in result[0]){
+        output += `<th>${posts}<th>`;
+      
+      }
+
+      output += htmlArray[1];
+
+      for (let user of result){
+        output += "<th>";
+        for (key in user){
+          output += `<th>${namn[key]}</th>`;
+          output += `<th>${email[key]}</th>`;
+          output += `<th>${amne[key]}</th>`;
+          output += `<th>${post[key]}</th>`;
+        }
+        output += "</th>";
+      }
+    
+      output += htmlArray[2];
+      res.send(output);
+    })   
+      
+  })  
+      
+  
+})
+
+
+
+// skickar över data till datorbasen från webbsida input
+app.post("/posts", function(req,res){
 
   datorbas.connect(function(err){
     let sql = `INSERT INTO posts (namn,email,amne,post)
@@ -72,16 +82,25 @@ app.post("/posts", function(req,res){
       if (err) console.log(err);
       res.redirect("/index")
     })
-    console.log()
+    process.on("sigint", function(){
+      datorbas.end((err) =>{
+        if (err) throw err;
+        console.log("stänger uppkopplingen.")
+        process.exit();
+      })
+    })
   })
-  
 })
 
+app.listen(port,function(){
+  console.log(`webbservern körs på port ${port}`);
+}) 
 
-  
-// klistrar mina värden till html
 
-    
+
+
+
+
   
 
 
