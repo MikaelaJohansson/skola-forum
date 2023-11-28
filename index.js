@@ -25,14 +25,17 @@ datorbas.connect(function(err) {
   console.log("Du är ansluten till datorbas!");
 });
 
+/*
 app.get("/index", function(req,res){
   res.sendFile(__dirname + "/index.html");
 })
+*/
 
 
 
-app.get("table", function (req,res){
 
+app.get("/index", function (req,res){
+  
   datorbas.query("select * from posts", function (err, result){
     if (err) throw err;
     
@@ -40,33 +43,30 @@ app.get("table", function (req,res){
       if (err) throw err;
 
       let htmlArray = data.split("***NODE***");
-      let output = htmlArray[0];
+      let output = htmlArray[0];  // SKRIVER UT ALL HTML FRAM TILL RAD 39
 
+      // LOOPA IGENOM RESULTATET OCH SKRIV IN MELLAN RAD 39 OCH 41
       for (let key in result[0]){
-        output += `<th>${posts}<th>`;
-      
+        output += `<th>${key}</th>`;
       }
 
-      output += htmlArray[1];
+      output += htmlArray[1]; // SKRIV UT HTML-DOKUMENTET RAD 41
 
-      for (let user of result){
-        output += "<th>";
+      // LOOPA IGENOM RESULTATET OCH SKRIV IN MELLAN RAD 41 OCH 43
+      for (let user of result){ // för varje rad i databastabellen
+        output += "<tr>";
         for (key in user){
-          output += `<th>${namn[key]}</th>`;
-          output += `<th>${email[key]}</th>`;
-          output += `<th>${amne[key]}</th>`;
-          output += `<th>${post[key]}</th>`;
+          output += `<td>${user[key]}</td>`;  // för varje kolumn i raden
         }
-        output += "</th>";
+        output += "</tr>";
       }
     
-      output += htmlArray[2];
+      output += htmlArray[2]; // SKRIVER UT HTML-DOKUMENTET FRÅN RAD 43 TILL SLUT
       res.send(output);
     })   
       
   })  
       
-  
 })
 
 
