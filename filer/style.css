@@ -1,67 +1,58 @@
 
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@100&family=Special+Elite&display=swap');
 
-
 *{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Major Mono Display', monospace;
 }
 body{
   width: 100%;
   min-height: 100vh;
+  display: flex;
   align-items: center;
-  display: flex;
-  background-color: rgb(59, 90, 83);
-  flex-direction: column;
-  overflow-x: hidden;
-  
-}
-h1,p{
-  color: white;
-  white-space: nowrap;
-  font-size: 2rem;
-}
-h1{
-  font-size: 3rem;
-}
-
-
-.container{
-  background-color: whitesmoke;
-  flex-direction: column;
-  min-height: fit-content;
-  display: flex;
   justify-content: center;
-  padding-left: 50%;
-  padding-right:50% ;
- 
-  padding-top: 2%;  
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(240, 240, 244), rgba(72, 140, 177, 0.999));
 }
 
-#form{
- 
-  padding: 4%;
-  padding-left: 40%;
-  padding-right: 125%;
-  background-color: rgb(226, 243, 226);
-  color: green;
+/* inloggnings sida style */
+.inloggning{
+ color: rgb(7, 7, 110);
+}
+#button{
+  border:solid rgb(7, 7, 110);
+  padding: 0.3%;
+}
+
+/* index sidan */
+.hälsning,.användaren,.input{
+  background-color: whitesmoke;
+  text-align: center;
+  margin: 5%;
+  margin-bottom: 5%;
+  min-width: fit-content;
   min-height: fit-content;
-  border: 15px solid rgb(120, 171, 120);
-  border-radius: 1rem;
-  box-shadow: 1px 2px rgb(120, 171, 120);
+  box-shadow: 2px 2px 2px gray;
+  padding-top: 2%;
+  padding: 2%;
+}
+.hälsning{
+  border-radius: 20rem 20rem 20rem 0px;
+}
+.användaren{
+  border-radius: 20rem 25rem 0rem 30rem;
+  
 }
 
 .input{
-  background-color:rgb(226, 243, 226);
-  padding: 4%;
-  padding-left: 40%;
-  padding-right: 125%;
-  min-height: fit-content;
-  box-shadow: 10px 10px 10px  rgb(120, 171, 120);
-  margin-bottom: 10%;
-  border-radius: 1rem;
-}
+  border-radius: 10rem 10rem 10rem 0px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 
+  
+ 
+}
 

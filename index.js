@@ -5,6 +5,7 @@ let mysql = require("mysql");
 let fs = require("fs");
 let cookieParser = require('cookie-parser')
 let session = require('express-session')
+let path = require('path');
 
 // kopplar iphopp med statics mappen
 app.use(express.static("filer"));
@@ -19,23 +20,20 @@ let datorbas = mysql.createConnection({
   password: "",
   database:"inloggning",
 });
-
-datorbas.connect(function(err) {
-  if (err) throw err;
-  console.log("Du är ansluten till datorbas!");
+datorbas.connect((err) => {
+  if (err) {
+    console.error('Error connecting to database:', err);
+    return;
+  }
+  console.log('Du är ansluten till datorbas!');
 });
 
-/*
-app.get("/index", function(req,res){
-  res.sendFile(__dirname + "/index.html");
-})
-*/
 
 
 
-
+// skriver ut databasen till html sidan
 app.get("/index", function (req,res){
-  
+ 
   datorbas.query("select * from posts", function (err, result){
     if (err) throw err;
     
@@ -67,7 +65,10 @@ app.get("/index", function (req,res){
       
   })  
       
+ 
 })
+
+
 
 
 
@@ -92,15 +93,42 @@ app.post("/posts", function(req,res){
   })
 })
 
+
+
+
+
+
+// inloggning med json
+
+app.get('/', function(request, response) {
+	// Render login template
+	response.sendFile(__dirname + '/login.html');
+});
+
+app.post("/checklogin", function (req, res) {
+  let users = JSON.parse(fs.readFileSync("users.json").toString()); // läs in JSON-fil och konvertera till en array med JavaScript-objekt
+  console.log(users);
+  for (i in users) {
+    if (users[i].user == req.body.user && users[i].pass == req.body.pass) {
+      let output = fs.readFileSync("index.html").toString();
+      output = output.replace("***NAMN***", users[i].name);
+      res.send(output);
+      return;
+    }
+  }
+  let output = fs.readFileSync("login.html").toString();
+  output = output.replace(
+    "<body>",
+    "<body>LOGIN FAILED! PLEASE TRY AGAIN!<br>"
+  );
+  res.send(output);
+});
+
+
+
+
+
 app.listen(port,function(){
   console.log(`webbservern körs på port ${port}`);
 }) 
-
-
-
-
-
-
-  
-
 

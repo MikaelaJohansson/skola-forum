@@ -5,45 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORUM</title>
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <h1>Välkommen</h1>
-    <br>
-    <p>Hej  vad kul att du tittar in igen</p>
-    <br>
     <div class="container">
-      
-      <form action="/posts" method="post" id="form">
 
-        <label for="namn">Namn</label>
-        <input type="text" id="namn" name="namn" size="30" >
+      <div class="hälsning">
+        <h1>Välkommen ***NAMN***</h1>
         <br>
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" size="30" >
+        <p>Vad kul att du tittar in igen</p>
         <br>
-        <label for="amne">Ämne</label>
-        <input type="text" id="amne" name="amne" size="30" >
-        <br>
-        <br>
-        <label for="posts">Inlägg:</label>
-        <br>
-        <textarea name="posts" id="posts" cols="30" rows="10"></textarea>
-        <br>
-        <button type="submit">post</button>
-      </form>
-      <br>
-
-      <div class="input">
-        <table>
-          <tr>
-            ***NODE***
-          </tr>
-          ***NODE***
-        </table>
       </div>
 
-    </div>
-  
+      <div class="inputen">
+        
+        <div class="användaren">         
+          <form action="/posts" method="post" id="form">
+
+            <label for="namn">Namn</label>
+            <input type="text" id="namn" name="namn" size="30" >
+            <br>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" size="30" >
+            <br>
+            <label for="amne">Ämne</label>
+            <input type="text" id="amne" name="amne" size="30" >
+            <br>
+            <br>
+            <label for="posts">Inlägg:</label>
+            <br>
+            <textarea name="posts" id="posts" cols="30" rows="10"></textarea>
+            <br>
+            <button type="submit">post</button>
+          </form>        
+          <br>
+        </div>  
+
+        <div class="input">
+          <table>
+            <tr>
+              ***NODE***
+            </tr>
+            ***NODE***
+          </table>
+        </div>
+
+      </div>
+    </div>  
   </body>
 </html>
