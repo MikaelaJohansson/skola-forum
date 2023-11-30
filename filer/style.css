@@ -69,6 +69,12 @@ body{
   align-items: center;
   justify-content: center;
   display: flex;
-
+}
+.bild{
+  width: 20%;
+}
+.bilden{
+  position: absolute;
+  width: 10%;
 }
 
