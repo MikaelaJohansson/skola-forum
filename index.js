@@ -41,34 +41,27 @@ app.get("/index", function (req,res){
       if (err) throw err;
 
       let htmlArray = data.split("***NODE***");
-      let output = htmlArray[0];  // SKRIVER UT ALL HTML FRAM TILL RAD 39
-
-      // LOOPA IGENOM RESULTATET OCH SKRIV IN MELLAN RAD 39 OCH 41
+      let output = htmlArray[0]; 
+     
       for (let key in result[0]){
-        output += `<th>${key}</th>`;
+        output += `<th>${key}</th><br><br>`;
       }
 
-      output += htmlArray[1]; // SKRIV UT HTML-DOKUMENTET RAD 41
+      output += htmlArray[1]; 
 
-      // LOOPA IGENOM RESULTATET OCH SKRIV IN MELLAN RAD 41 OCH 43
-      for (let user of result){ // för varje rad i databastabellen
-        output += "<tr>";
+      for (let user of result){
+        output += "<tr><br><br>";
         for (key in user){
-          output += `<td>${user[key]}</td>`;  // för varje kolumn i raden
+          output += `<td>${user[key]}</td><br><br>`;  
         }
-        output += "</tr>";
+        output += "</tr><br><br>";
       }
     
-      output += htmlArray[2]; // SKRIVER UT HTML-DOKUMENTET FRÅN RAD 43 TILL SLUT
+      output += htmlArray[2]; 
       res.send(output);
-    })   
-      
-  })  
-      
- 
+    })     
+  })      
 })
-
-
 
 
 
@@ -95,13 +88,9 @@ app.post("/posts", function(req,res){
 
 
 
-
-
-
-// inloggning med json
+// inloggning med json, för jag lyckas inte logga in med min dator bas
 
 app.get('/', function(request, response) {
-	// Render login template
 	response.sendFile(__dirname + '/login.html');
 });
 
@@ -124,6 +113,33 @@ app.post("/checklogin", function (req, res) {
   res.send(output);
 });
 
+
+
+// jag lyckas inte logga in med datorbasen vet inte vad det är för fel på koden.
+
+// app.get('/', function(request, response) {
+// 	// Render login template
+// 	response.sendFile(path.join(__dirname + '/login.html'));
+// });
+// app.post("/checklogin", function (req, res) {
+
+//   datorbas.query("select * from users WHERE username = ? AND password = ?", function (err, result){
+//     if (err) throw err;
+   
+//     fs.readFile("/index", "utf-8", function (err, data){
+
+//       for (i in result) {
+//         if (result[i].username == req.body.user && result[i].password == req.body.pass) {
+//           res.redirect("/index")
+//           return;
+//         }
+//       }
+      
+//     });
+
+//   })
+// }) 
+  
 
 
 
